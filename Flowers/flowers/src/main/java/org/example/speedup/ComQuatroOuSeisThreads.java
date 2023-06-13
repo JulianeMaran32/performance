@@ -1,4 +1,4 @@
-package org.example.tempoExecucao;
+package org.example.speedup;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -7,31 +7,39 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComDuasThreads {
+public class ComQuatroOuSeisThreads {
 
     public static final String ARQUIVO_ORIGEM = "./resources/many-flowers.jpg";
-    public static final String ARQUIVO_DESTINO = "./out/many-flowers-com-uma-thread.jpg";
+    public static final String ARQUIVO_DESTINO = "./out/many-flowers-multithreads.jpg";
 
     public static void main(String[] args) throws IOException {
 
         BufferedImage imgOrigem = ImageIO.read(new File(ARQUIVO_ORIGEM));
         var imgResultado = new BufferedImage(imgOrigem.getWidth(), imgOrigem.getHeight(),
                 BufferedImage.TYPE_INT_RGB);
+
         long startTime = System.currentTimeMillis();
-        int numberOfThreads = 2;
-        recolorMultithreaded(imgOrigem, imgResultado, numberOfThreads);
+
+        // Aqui deve alterar o número da thread deixando 4 ou 6
+        int numberOfThreads = 4;
+
+        recolorMultitThreaded(imgOrigem, imgResultado, numberOfThreads);
+
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
         var outputFile = new File(ARQUIVO_DESTINO);
         ImageIO.write(imgResultado, "jpg", outputFile);
+
         System.out.println("Número de Threads: " + numberOfThreads);
         System.out.println("Tempo de execução: " + duration + "ms");
 
     }
 
-    private static void recolorMultithreaded(BufferedImage imgOrigem, BufferedImage imgResultado, int numberOfThreads) {
+    private static void recolorMultitThreaded(BufferedImage imgOrigem, BufferedImage imgResultado, int numberOfThreads) {
+
         List<Thread> threads = new ArrayList<>();
         int height = imgOrigem.getHeight() / numberOfThreads;
+
         for (int i = 0; i < numberOfThreads; i++) {
             final int threadIndex = i;
             var thread = new Thread(() -> {
@@ -41,8 +49,10 @@ public class ComDuasThreads {
             });
             threads.add(thread);
         }
+
         for (Thread thread : threads)
             thread.start();
+
         for (Thread thread : threads) {
             try {
                 thread.join();
@@ -50,6 +60,7 @@ public class ComDuasThreads {
                 e.printStackTrace();
             }
         }
+
     }
 
     public static void recolorirImagem(BufferedImage imgOrigem, BufferedImage imgResultado,
