@@ -138,5 +138,5 @@ public class MultiThreads {
     public static int getBlue(int rgb) {
         return rgb & 0x000000FF;
     }
-    
+
 }
