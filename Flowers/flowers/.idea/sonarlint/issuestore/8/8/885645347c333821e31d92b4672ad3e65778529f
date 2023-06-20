@@ -1,0 +1,9 @@
+
+m	java:S117j"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(φ›ρ8‚ΫΜ±‹1
+m	java:S117j"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(φ›ρ8ƒΫΜ±‹1
+X	java:S125"<This block of commented-out lines of code should be removed.(Ίθω8ÿ–ΐ±‹1
+X	java:S125S"<This block of commented-out lines of code should be removed.(ηθ¬Υ8’ήÒ±‹1
+I
+java:S1602t",Remove useless curly braces around statement(®Μ»κ8ΫΜ±‹1
+{
+java:S2142"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(δ Ή€8ΫΜ±‹1
